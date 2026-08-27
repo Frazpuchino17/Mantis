@@ -1,58 +1,118 @@
-<h1 align="center">Scramjet</h1>
-<div align="center">
-  <img src="assets/scramjet.png" height="200" />
-</div>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Frazpuchino17/Mantis/3900da4f958627cdad65ba2f23e9d011a876aa5e/Screenshot%202026-08-27%201.10.47%20AM.png" alt="Mantis" width="530">
 
-<div align="center">
-  <a href="https://www.npmjs.com/package/@mercuryworkshop/scramjet"><img src="https://img.shields.io/npm/v/@mercuryworkshop/scramjet.svg?maxAge=3600" alt="npm version" /></a>
-  <img src="https://img.shields.io/github/issues/MercuryWorkshop/scramjet?style=flat&color=orange" />
-  <img src="https://img.shields.io/github/stars/MercuryWorkshop/scramjet?style=flat&color=orange" />
-</div>
 
----
+**Mantis** is an interception-based web proxy engine based on **Scramjet v2**, focused on simplifying setup, improving compatibility, and providing a foundation for further development.
 
-Scramjet is an experimental interception-based web proxy designed to evade internet censorship and bypass arbitrary browser restrictions.<br><br>
-Scramjet allows you to sandbox arbitrary web content, bypass CORS restrictions on loading websites, and instrument and debug websites inside the browser itself. This is accomplished through a combination of interception, rewriting, and sandboxing techniques. You can learn more about the technical details <a href="https://developer.puter.com/blog/how-I-ported-the-web-to-the-web/"><strong>here</strong></a>.<br><br>
+Mantis is developed as part of the **SkyFlare** ecosystem.
+
+## Features
+
+* Interception-based web proxy
+* Web content rewriting
+* Browser-based sandboxing
+* WASM-powered rewriting
+* Automated setup
+* Automatic dependency detection
+* Simple development workflow
+* Designed for modern web applications
 
 ## Supported Sites
 
-Some of the popular websites that Scramjet supports include:
+Mantis is designed to work with a wide range of modern websites.
 
-- [Google](https://google.com)
-- [Youtube](https://youtube.com)
-- [Instagram](https://instagram.com)
-- [ChatGPT](https://chatgpt.com)
-- [Reddit](https://reddit.com)
-- [Twitter](https://twitter.com)
-- [Discord](https://discord.com)
-- [Spotify](https://spotify.com)
-- [GeForce NOW](https://play.geforcenow.com/)
-- [now.gg](https://now.gg)
+Compatibility may vary depending on the website and its implementation.
+
+Some tested sites include:
+
+* Google
+* YouTube
+* Instagram
+* ChatGPT
+* Reddit
+* Discord
+* Spotify
+* GeForce NOW
+* now.gg
+
+## Installation
+
+Mantis includes an automated setup system that handles the project's required Rust and WASM tooling for you.
+
+### Requirements
+
+* Recent version of `Node.js`
+* `pnpm`
+
+### Setup
+
+Clone the repository:
+
+```bash
+git clone --recursive https://github.com/Frazpuchino17/Mantis
+cd Mantis
+```
+
+Install dependencies:
+
+```bash
+pnpm install
+```
+
+The setup process runs automatically after installation and handles the required tools and builds.
+
+### Running Mantis
+
+Start the development server:
+
+```bash
+pnpm start
+```
+
+The Mantis demo will be available at:
+
+```text
+http://localhost:4141
+```
+
+That's it.
+
+## Manual Setup
+
+If you need to run the setup process again:
+
+```bash
+pnpm setup
+```
+
+The setup script automatically checks for required dependencies and installs or builds anything that is missing.
 
 ## Development
 
-### Dependencies
+Mantis is currently under active development.
 
-- Recent versions of `node.js` and `pnpm`
-- `rustup`
-- `wasm-bindgen`
-- [Binaryen's `wasm-opt`](https://github.com/WebAssembly/binaryen)
-- [this `wasm-snip` fork](https://github.com/r58Playz/wasm-snip)
+Development includes:
 
-#### Building
+* Improving website compatibility
+* Improving proxy performance
+* Improving rewriting
+* Improving interception
+* Better support for modern web applications
+* Simplifying development and setup
+* Integration with other SkyFlare projects
 
-- Clone the repository with `git clone --recursive https://github.com/MercuryWorkshop/scramjet`
-- Install the dependencies with `pnpm i`
-- Change directories with `cd packages/core`
-- Build the rewriter with `pnpm rewriter:build`
-- Build Scramjet with `pnpm build`
+## Credits
 
-### Running Scramjet Locally
+Mantis is based on **Scramjet v2** by Mercury Workshop.
 
-You can run the Scramjet dev server when running this command at the root
+Mantis is an independent project and is not affiliated with Mercury Workshop.
 
-```sh
-pnpm dev
-```
+## Documentation
 
-The demo page for scramjet should now be running at <http://localhost:4141> and should rebuild upon a file being changed (excluding the rewriter).
+* [Quick Start](./QUICKSTART.md)
+* [Simplified Setup](./SETUP-SIMPLIFICADO.md)
+* [Setup Changes](./RESUMEN-CAMBIOS.md)
+
+## Project
+
+**Mantis** is developed by **SkyFlare**.
