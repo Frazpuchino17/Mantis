@@ -17,7 +17,11 @@ import {
 } from "./devlib.ts";
 import rspackConfig from "./rspack.config.ts";
 
-const image = await fs.readFile("./assets/scramjet-mini-noalpha.png");
+const mantisLogo = `
+  ╔╦╗┌─┐┌┐┌┌┬┐┬┌─┐  ╔═╗┌─┐┌─┐┬ ┬┬
+  ║║║├─┤││││ │││└─┐  ╠═╝├┤ ├─┤│└┤│
+  ╩ ╩┴ ┴┘└┘ ┴ ┴└─┘  ╩  └─┘┴ ┴└─┘┴ ┴┴
+`;
 
 const commit = execSync("git rev-parse --short HEAD", {
 	encoding: "utf-8",
@@ -56,6 +60,12 @@ const server = await createServer({
 	server: {
 		port: Number(DEMO_PORT),
 		strictPort: true,
+		proxy: {
+			"/wisp": {
+				target: `http://localhost:${WISP_PORT}`,
+				ws: true,
+			},
+		},
 	},
 });
 
@@ -63,14 +73,14 @@ warnOnUrlEscape(server);
 
 await server.listen();
 
-const accent = (text: string) => chalk.hex("#f1855bff").bold(text);
-const highlight = (text: string) => chalk.hex("#fdd76cff").bold(text);
+const accent = (text: string) => chalk.hex("#FF6B35").bold(text);
+const highlight = (text: string) => chalk.hex("#FFB84D").bold(text);
 const urlColor = (text: string) => chalk.hex("#64DFDF").underline(text);
 const note = (text: string) => chalk.hex("#CDB4DB")(text);
 const connector = chalk.hex("#8D99AE").dim("@");
 
 const lines = [
-	black()(`${highlight("SCRAMJET DEV SERVER")}`),
+	black()(`${highlight("MANTIS PROXY - DEV SERVER")}`),
 	black()(
 		`${accent("demo")} ${connector} ${urlColor(
 			`http://localhost:${DEMO_PORT}/`
@@ -81,9 +91,16 @@ const lines = [
 			process.env.VITE_WISP_URL ?? ""
 		)}`
 	),
-	black()(chalk.dim(`[${branch}] ${commit} scramjet/${version}`)),
+	black()(chalk.dim(`[${branch}] ${commit} mantis/${version}`)),
 ];
 
 runRspack(rspackConfig);
 
-printBanner(image, lines);
+// Print banner with ASCII art
+console.log("\n");
+console.log(chalk.hex("#FF6B35").bold("  ╔╦╗┌─┐┌┐┌┌┬┐┬┌─┐  ╔═╗┌─┐┌─┐┬ ┬┬ "));
+console.log(chalk.hex("#FF6B35").bold("  ║║║├─┤││││ │││└─┐  ╠═╝├┤ ├─┤│└┤│ "));
+console.log(chalk.hex("#FF6B35").bold("  ╩ ╩┴ ┴┘└┘ ┴ ┴└─┘  ╩  └─┘┴ ┴└─┘┴ ┴┴ "));
+console.log("");
+lines.forEach((line) => console.log(line));
+console.log("");

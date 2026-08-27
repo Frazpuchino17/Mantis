@@ -8,7 +8,7 @@ import {
 	ScramjetHeaders,
 	type ScramjetFetchRequest,
 } from "@mercuryworkshop/scramjet";
-import { cachePlugin, controller } from "..";
+import { controller } from "..";
 import Monaco from "../components/Monaco";
 
 const DEFAULT_ORIGIN = "https://fakeorigin.com";
@@ -35,12 +35,12 @@ const DEFAULT_FILES: PlaygroundFile[] = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Scramjet Playground</title>
+    <title>Mantis Playground</title>
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <main>
-      <h1>Scramjet Playground</h1>
+      <h1>Mantis Playground</h1>
       <p>Edit files on the left, then reload the preview.</p>
       <button id="btn">Click me</button>
       <pre id="out"></pre>
@@ -418,7 +418,7 @@ const PlaygroundView: Component<
 		if (path.endsWith(".js") || path.endsWith(".mjs")) return "script";
 		if (path.endsWith(".css")) return "style";
 		if (path.endsWith(".html")) return "document";
-		return "empty";
+		return "";
 	};
 
 	const isScriptFile = (path: string) =>

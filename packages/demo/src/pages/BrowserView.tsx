@@ -186,6 +186,19 @@ const BrowserView: Component<
 			browserState.frame?.go(goto);
 			history.replaceState(null, "", location.href.split("?")[0]);
 		}
+
+		// Listen for navigation messages from homepage
+		const handleMessage = (e: MessageEvent) => {
+			if (e.data?.type === 'mantis:navigate' && e.data?.url) {
+				browserState.frame?.go(e.data.url);
+			}
+		};
+		window.addEventListener('message', handleMessage);
+
+		// Cleanup listener on unmount
+		cx.unmount = () => {
+			window.removeEventListener('message', handleMessage);
+		};
 	};
 
 	return (

@@ -13,7 +13,12 @@ let controller: InstanceType<typeof Controller>;
 const cachePlugin = new HttpCachePlugin();
 
 export function getTransport(): LibcurlClient | EpoxyClient {
-	const wispUrl = demoSettingsStore.wispUrl;
+	const configuredUrl = demoSettingsStore.wispUrl;
+	const wispUrl =
+		configuredUrl.includes("localhost:4142") ||
+		configuredUrl.includes("127.0.0.1:4142")
+			? `${location.protocol === "https:" ? "wss:" : "ws:"}//${location.host}/wisp/`
+			: configuredUrl;
 	switch (demoSettingsStore.transport) {
 		case "epoxy":
 			return new EpoxyClient({ wisp: wispUrl });
